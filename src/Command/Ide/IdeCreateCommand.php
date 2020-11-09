@@ -31,6 +31,11 @@ class IdeCreateCommand extends IdeCommandBase {
   private $client;
 
   /**
+   * @var \Acquia\Cli\Output\Checklist
+   */
+  private $checklist;
+
+  /**
    * {inheritdoc}.
    */
   protected function configure() {
@@ -96,7 +101,7 @@ class IdeCreateCommand extends IdeCommandBase {
         $this->logger->debug($e->getMessage());
       }
     });
-    LoopHelper::addTimeoutToLoop($loop, 15, $spinner, $this->output);
+    LoopHelper::addTimeoutToLoop($loop, 20, $spinner, $this->output);
 
     // Start the loop.
     $loop->run();
