@@ -79,10 +79,10 @@ class ExceptionListener {
         default:
           $new_error_message = 'Cloud Platform API returned an error: ' . $errorMessage;
       }
-      $this->blockMessages[] = "You can learn more about Cloud Platform API at <bg={$this->messagesBgColor};href=https://docs.acquia.com/cloud-platform/develop/api/>https://docs.acquia.com/cloud-platform/develop/api/</>";
+      $this->blockMessages[] = "You can learn more about Cloud Platform API at https://docs.acquia.com/cloud-platform/develop/api/";
     }
 
-    $this->blockMessages[] = "You can find Acquia CLI documentation at <bg={$this->messagesBgColor};href=https://docs.acquia.com/acquia-cli/>https://docs.acquia.com/acquia-cli/</>";
+    $this->blockMessages[] = "You can find Acquia CLI documentation at https://docs.acquia.com/acquia-cli/";
     if (isset($new_error_message)) {
       $event->setError(new AcquiaCliException($new_error_message, [], $exitCode));
     }
@@ -108,8 +108,8 @@ class ExceptionListener {
    *
    */
   protected function writeSupportTicketHelp(): void {
-    $this->blockMessages[] = "You may also to ask for more information.";
-    $this->blockMessages[] = "<bg={$this->messagesBgColor};href=https://insight.acquia.com/support/tickets/new?product=p:ride>https://insight.acquia.com/support/tickets/new?product=p:ride</>";
+    $this->blockMessages[] = "You may also to ask for more information by filing a support ticket at" . PHP_EOL
+    . "https://insight.acquia.com/support/tickets/new?product=p:ride";
   }
 
 }
