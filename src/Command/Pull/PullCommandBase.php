@@ -213,11 +213,14 @@ abstract class PullCommandBase extends CommandBase {
    * @param null $output_callback
    */
   protected function checkoutBranchFromEnv(EnvironmentResponse $environment, $output_callback = NULL): void {
-    $this->localMachineHelper->execute([
+    $process = $this->localMachineHelper->execute([
       'git',
       'checkout',
       $environment->vcs->path,
     ], $output_callback, $this->dir, FALSE);
+    if (!$process->isSuccessful()) {
+      throw new AcquiaCliException("Unable to checkout {$environment->vcs->path} via git: " . $process->getOutput() . $process->getErrorOutput());
+    }
   }
 
   /**
