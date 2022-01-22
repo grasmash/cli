@@ -247,7 +247,7 @@ class CodeStudioWizardCommand extends WizardCommandBase {
    * @throws \Acquia\Cli\Exception\AcquiaCliException
    */
   protected function validateEnvironment() {
-    //$this->requireCloudIdeEnvironment();
+    $this->requireCloudIdeEnvironment();
     if (!getenv('GITLAB_HOST')) {
       throw new AcquiaCliException('The GITLAB_HOST environmental variable must be set.');
     }
@@ -627,7 +627,7 @@ class CodeStudioWizardCommand extends WizardCommandBase {
    */
   protected function pushCodeToGitLab(OutputInterface $output, array $project): void {
     $current_branch = $this->getCurrentBranchName();
-    $push_code = $this->io->confirm("You currently have the $current_branch branch checked out in this environment. Would you like to perform a one time push of code from this Cloud IDE to Code Studio now? Note, we have not changed any code in this branch as a part of this setup process.");
+    $push_code = $this->io->confirm("You currently have the $current_branch branch checked out in this environment.\nWould you like to perform a one time push of code from this Cloud IDE to Code Studio now?\nNote, we have not changed any code in this branch as a part of this setup process.");
     $this->addGitRemote($output, $project['http_url_to_repo']);
     // @todo Check to see if there's actually any code here.
     if ($push_code) {
